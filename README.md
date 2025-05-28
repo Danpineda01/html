@@ -22,7 +22,7 @@
 </head>
 <body>
     <canvas id="canvas" width="400" height="400"></canvas>
-    <p><strong>Animos licencia no.1</strong></p>
+    <p><strong>ANIMOS LICENCIA NO.1</strong></p>
 
     <script>
         const canvas = document.getElementById("canvas");
