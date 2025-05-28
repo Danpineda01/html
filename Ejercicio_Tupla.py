@@ -1,0 +1,34 @@
+#animacion
+import turtle
+
+screen=turtle.Screen()
+screen.bgcolor("black")
+
+t=turtle.Turtle()
+t.speed(0)
+t.color("purple")
+
+t.fillcolor("purple")
+t.begin_fill()
+
+t.left(140)
+t.forward(113)
+
+for i in range(200):
+    t.right(1)
+    t.forward(1)
+
+t.left(120)
+
+for i in range(200):
+    t.right(1)
+    t.forward(1)
+
+t.forward(112)
+
+t.end_fill()
+t.setpos(0,-22)
+t.color("white")
+t.hideturtle()
+t.write("ANIMOS FUTURA LIC. SARI",align="center",font=("Courier",24,"normal"))
+turtle.done()
