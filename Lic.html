@@ -1,46 +1,50 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Animación con Turtle</title>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.9.5/brython.min.js"></script>
-</head>
-<body onload="brython()">
-    <script type="text/python">
-        import turtle
+<canvas id="canvas" width="500" height="400"></canvas>
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    let y = 180;
+    let direction = 1;
+    let angle = 0;
+
+    function drawHeart(x, y, size) {
+        ctx.fillStyle = "purple"; // Color similar al que usaste en Python
+        ctx.beginPath();
+
+        // Forma del corazón más similar a turtle
+        ctx.moveTo(x, y);
+        ctx.bezierCurveTo(x - size, y - size * 1.3, x - size * 2, y + size * 1.2, x, y + size * 2);
+        ctx.bezierCurveTo(x + size * 2, y + size * 1.2, x + size, y - size * 1.3, x, y);
         
-        screen = turtle.Screen()
-        screen.bgcolor("black")
+        ctx.fill();
+    }
 
-        t = turtle.Turtle()
-        t.speed(0)
-        t.color("purple")
+    function drawTextAroundHeart(x, y) {
+        ctx.fillStyle = "white"; // Color del texto
+        ctx.font = "bold 24px Courier"; // Tipo de fuente similar al de turtle
+        
+        ctx.save();
+        ctx.translate(x, y - 140);
+        ctx.rotate(Math.sin(angle) * 0.1); // Pequeña animación de movimiento
+        ctx.fillText("ÁNIMOS FUTURA LIC. SARI", -160, 0);
+        ctx.restore();
+    }
 
-        t.fillcolor("purple")
-        t.begin_fill()
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        drawHeart(250, y, 110);
+        drawTextAroundHeart(250, y);
 
-        t.left(140)
-        t.forward(113)
+        y += direction;
+        angle += 0.05;
 
-        for i in range(200):
-            t.right(1)
-            t.forward(1)
+        if (y >= 220 || y <= 140) {
+            direction *= -1;
+        }
 
-        t.left(120)
+        requestAnimationFrame(animate);
+    }
 
-        for i in range(200):
-            t.right(1)
-            t.forward(1)
-
-        t.forward(112)
-        t.end_fill()
-
-        t.setpos(0,-22)
-        t.color("white")
-        t.hideturtle()
-        t.write("ANIMOS FUTURA LIC. SARI", align="center", font=("Courier", 24, "normal"))
-
-        turtle.done()
-    </script>
-</body>
-</html>
+    animate();
+</script>
