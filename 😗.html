@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Una pregunta muy importante!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffebee;
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            position: relative;
+        }
+        
+        h1 {
+            color: #e91e63;
+            margin-bottom: 20px;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        #btnSi {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        #btnSi:hover {
+            background-color: #388E3C;
+            transform: scale(1.05);
+        }
+        
+        #btnNo {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            transition: all 0.1s;
+        }
+        
+        #btnNo:hover {
+            background-color: #D32F2F;
+        }
+        
+        .mensaje {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #e91e63;
+            display: none;
+            animation: fadeIn 1s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .corazon {
+            font-size: 30px;
+            animation: latido 1s infinite;
+            display: none;
+        }
+        
+        @keyframes latido {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>¡Sari, quieres ser mi novia?</h1>
+        <div class="buttons">
+            <button id="btnSi">¡Sí! 😊</button>
+            <button id="btnNo">No 😢</button>
+        </div>
+        <div id="mensaje" class="mensaje">
+            <p>¡Sabía que tu respuesta sería positiva! 😘</p>
+            <div class="corazon">❤️</div>
+        </div>
+    </div>
+
+    <script>
+        const btnSi = document.getElementById('btnSi');
+        const btnNo = document.getElementById('btnNo');
+        const mensaje = document.getElementById('mensaje');
+        const container = document.querySelector('.container');
+        
+        btnSi.addEventListener('click', () => {
+            mensaje.style.display = 'block';
+            btnNo.style.display = 'none';
+            btnSi.style.display = 'none';
+            document.querySelector('.corazon').style.display = 'block';
+            
+            // Confeti!
+            for (let i = 0; i < 100; i++) {
+                createConfetti();
+            }
+        });
+        
+        btnNo.addEventListener('mouseover', () => {
+            // Mover el botón "No" a una posición aleatoria
+            const containerRect = container.getBoundingClientRect();
+            const btnRect = btnNo.getBoundingClientRect();
+            
+            const maxX = containerRect.width - btnRect.width;
+            const maxY = containerRect.height - btnRect.height;
+            
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            btnNo.style.position = 'absolute';
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+        });
+        
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.style.position = 'absolute';
+            confetti.style.width = '10px';
+            confetti.style.height = '10px';
+            confetti.style.backgroundColor = getRandomColor();
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = '-10px';
+            confetti.style.borderRadius = '50%';
+            confetti.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+            
+            document.body.appendChild(confetti);
+            
+            const animation = confetti.animate([
+                { top: '-10px', opacity: 1 },
+                { top: '100vh', opacity: 0 }
+            ], {
+                duration: Math.random() * 3000 + 2000,
+                easing: 'cubic-bezier(0.1, 0.8, 0.9, 1)'
+            });
+            
+            animation.onfinish = () => {
+                confetti.remove();
+            };
+        }
+        
+        function getRandomColor() {
+            const colors = ['#e91e63', '#9c27b0', '#3f51b5', '#2196f3', '#4caf50', '#ffeb3b', '#ff9800', '#ff5722'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+    </script>
+</body>
+</html>
