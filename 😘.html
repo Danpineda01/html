@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi novia?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+        #no {
+            position: absolute;
+        }
+    </style>
+    <script>
+        function mensajeSi() {
+            alert("¡Yupi! Sabía que dirías que sí ❤️");
+        }
+
+        function moverNo() {
+            var botonNo = document.getElementById("no");
+            var x = Math.random() * (window.innerWidth - botonNo.offsetWidth);
+            var y = Math.random() * (window.innerHeight - botonNo.offsetHeight);
+            botonNo.style.left = x + "px";
+            botonNo.style.top = y + "px";
+        }
+    </script>
+</head>
+<body>
+    <h1>¿Quieres ser mi novia?</h1>
+    <button onclick="mensajeSi()">Sí</button>
+    <button id="no" onmouseover="moverNo()">No</button>
+</body>
+</html>
