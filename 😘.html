@@ -6,19 +6,54 @@
     <title>¿Quieres ser mi novia?</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
             text-align: center;
+            background-color: #ffdde1;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            color: #ff4081;
+            font-size: 40px;
             margin-top: 50px;
         }
+        .botones {
+            margin-top: 20px;
+        }
         button {
-            font-size: 20px;
+            font-size: 22px;
             padding: 10px 20px;
             margin: 10px;
             cursor: pointer;
-            position: relative;
+            border: none;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        #si {
+            background-color: #ff4081;
+            color: white;
+        }
+        #si:hover {
+            background-color: #d81b60;
         }
         #no {
+            background-color: #ff6f91;
+            color: white;
             position: absolute;
+        }
+        .corazones {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            clip-path: polygon(50% 0%, 100% 40%, 80% 100%, 50% 80%, 20% 100%, 0% 40%);
+            opacity: 0.7;
+            animation: flotar 5s infinite ease-in-out;
+        }
+        @keyframes flotar {
+            0% { transform: translateY(0); opacity: 0.7; }
+            50% { transform: translateY(-100px); opacity: 1; }
+            100% { transform: translateY(-200px); opacity: 0; }
         }
     </style>
     <script>
@@ -33,11 +68,26 @@
             botonNo.style.left = x + "px";
             botonNo.style.top = y + "px";
         }
+
+        function crearCorazones() {
+            for (let i = 0; i < 15; i++) {
+                let corazon = document.createElement("div");
+                corazon.classList.add("corazones");
+                corazon.style.left = Math.random() * window.innerWidth + "px";
+                corazon.style.top = Math.random() * window.innerHeight + "px";
+                corazon.style.animationDuration = Math.random() * 3 + 4 + "s";
+                document.body.appendChild(corazon);
+            }
+        }
+        
+        window.onload = crearCorazones;
     </script>
 </head>
 <body>
-    <h1>¿Quieres ser mi novia?</h1>
-    <button onclick="mensajeSi()">Sí</button>
-    <button id="no" onmouseover="moverNo()">No</button>
+    <h1>¿Quieres ser mi novia? 💖</h1>
+    <div class="botones">
+        <button id="si" onclick="mensajeSi()">Sí</button>
+        <button id="no" onmouseover="moverNo()">No</button>
+    </div>
 </body>
 </html>
