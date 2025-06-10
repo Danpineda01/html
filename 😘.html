@@ -8,12 +8,12 @@
         body {
             font-family: 'Comic Sans MS', cursive, sans-serif;
             text-align: center;
-            background-color: #ffdde1;
+            background-color: #e1b0ff;
             overflow: hidden;
             position: relative;
         }
         h1 {
-            color: #ff4081;
+            color: #8a2be2;
             font-size: 40px;
             margin-top: 50px;
         }
@@ -30,14 +30,14 @@
             transition: 0.3s;
         }
         #si {
-            background-color: #ff4081;
+            background-color: #8a2be2;
             color: white;
         }
         #si:hover {
-            background-color: #d81b60;
+            background-color: #6a1cbf;
         }
         #no {
-            background-color: #ff6f91;
+            background-color: #aa5af7;
             color: white;
             position: absolute;
         }
@@ -57,16 +57,21 @@
         }
     </style>
     <script>
-        function mensajeSi() {
+        let movimientos = 0;
+        
+       Si() {
             alert("¡Yupi! Sabía que dirías que sí ❤️");
         }
 
         function moverNo() {
-            var botonNo = document.getElementById("no");
-            var x = Math.random() * (window.innerWidth - botonNo.offsetWidth);
-            var y = Math.random() * (window.innerHeight - botonNo.offsetHeight);
-            botonNo.style.left = x + "px";
-            botonNo.style.top = y + "px";
+            if (movimientos < 10) {
+                var botonNo = document.getElementById("no");
+                var x = Math.random() * (window.innerWidth - botonNo.offsetWidth);
+                var y = Math.random() * (window.innerHeight - botonNo.offsetHeight);
+                botonNo.style.left = x + "px";
+                botonNo.style.top = y + "px";
+                movimientos++;
+            }
         }
 
         function crearCorazones() {
@@ -84,7 +89,7 @@
     </script>
 </head>
 <body>
-    <h1>¿Quieres ser mi novia? 💖</h1>
+    <h1>¿Quieres ser mi novia? 💜</h1>
     <div class="botones">
         <button id="si" onclick="mensajeSi()">Sí</button>
         <button id="no" onmouseover="moverNo()">No</button>
