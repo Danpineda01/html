@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta Especial</title>
+    <style>
+        body {
+            background-color: purple;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+        }
+        .yes {
+            background-color: #6a0dad;
+            color: white;
+        }
+        .no {
+            background-color: #ff0000;
+            color: white;
+            position: relative;
+        }
+        .decor {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="decor">💜✨🌟</div>
+        <div class="question">Sari, ¿quieres ser mi novia?</div>
+        <div class="buttons">
+            <button class="yes" onclick="alert('Yupi, qué alegre que dijiste que sí 😘')">Sí</button>
+            <button class="no" id="noBtn" onmouseover="moveButton()">No</button>
+        </div>
+    </div>
+    <script>
+        function moveButton() {
+            let noBtn = document.getElementById("noBtn");
+            let x = Math.random() * window.innerWidth - 100;
+            let y = Math.random() * window.innerHeight - 50;
+            noBtn.style.position = "absolute";
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        }
+    </script>
+</body>
+</html>
