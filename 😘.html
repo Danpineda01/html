@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta Especial</title>
+    <style>
+        body {
+            background-color: #2a006a;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .envelope {
+            width: 600px;
+            height: 400px;
+            background-color: white;
+            position: relative;
+            border-radius: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.5s;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+        .envelope::before {
+            content: "❤️";
+            font-size: 150px;
+            color: red;
+        }
+        .letter {
+            width: 90%;
+            max-width: 800px;
+            height: 600px;
+            background-color: purple;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 0 20px white;
+            opacity: 0;
+            transition: transform 0.5s, opacity 0.5s;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="envelope" onclick="openLetter()"></div>
+    </div>
+    
+    <div class="letter" id="letter">
+        <p>Échale ganas hermosa, sé que andas cansada, estresada, con sueño, pero son momentos. Recuerda que siempre soy tu fan 🐻 y tú puedes con todo.!!! TE QUIERO SARI MI PRINCESA HERMOSA</p>
+    </div>
+
+    <script>
+        function openLetter() {
+            let letter = document.getElementById("letter");
+            letter.style.transform = "translate(-50%, -50%) scale(1)";
+            letter.style.opacity = "1";
+        }
+    </script>
+
+</body>
+</html>
