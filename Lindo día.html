@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lindo Día</title>
+    <style>
+        body {
+            background-color: black;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .heart {
+            font-size: 50px;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s, transform 1s;
+        }
+        .big-heart {
+            font-size: 150px;
+            color: transparent;
+            position: absolute;
+            display: none;
+            animation: fill 2s forwards;
+        }
+        .big-message {
+            font-size: 24px;
+            display: none;
+            margin-top: 20px;
+        }
+        @keyframes fill {
+            0% { color: transparent; }
+            100% { color: purple; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="heartContainer"></div>
+    <div class="big-heart" id="bigHeart">💜</div>
+    <div class="big-message" id="bigMessage">Te quiero Sari mi hermosa princesa 💜</div>
+
+    <script>
+        const messages = [
+            "Buenos días, mi hermosa 💜",
+            "Espero que hoy te vaya increíble 💜",
+            "Eres la persona más especial 💜",
+            "Siempre aquí para ti 💜",
+            "Nunca olvides lo increíble que eres 💜",
+            "Tienes un brillo único 💜",
+            "Que tu día esté lleno de felicidad 💜"
+        ];
+
+        function createHearts() {
+            let container = document.getElementById("heartContainer");
+            messages.forEach((message, index) => {
+                setTimeout(() => {
+                    let heart = document.createElement("div");
+                    heart.className = "heart";
+                    heart.innerHTML = `💜 ${message}`;
+                    heart.style.top = Math.random() * 80 + "%";
+                    heart.style.left = Math.random() * 80 + "%";
+                    container.appendChild(heart);
+                    setTimeout(() => {
+                        heart.style.opacity = "1";
+                        heart.style.transform = "scale(1.2)";
+                    }, 100);
+                }, index * 1500);
+            });
+
+            setTimeout(() => {
+                document.getElementById("bigHeart").style.display = "block";
+            }, messages.length * 1500 + 2000);
+
+            setTimeout(() => {
+                document.getElementById("bigMessage").style.display = "block";
+            }, messages.length * 1500 + 4000);
+        }
+
+        createHearts();
+    </script>
+
+</body>
+</html>
