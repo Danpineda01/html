@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Saris, mi rosa única</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      text-align: center;
+      font-family: 'Courier New', cursive;
+      padding-top: 80px;
+    }
+
+    .corazones {
+      font-size: 48px;
+      animation: palpitar 1.2s infinite;
+      color: red;
+    }
+
+    @keyframes palpitar {
+      0% { transform: scale(1); color: #ff1a4b; }
+      50% { transform: scale(1.4); color: #ff6666; }
+      100% { transform: scale(1); color: #ff1a4b; }
+    }
+
+    #mensaje {
+      display: none;
+      margin-top: 40px;
+      font-size: 36px;
+      color: #ffb6c1;
+    }
+
+    .nombre {
+      font-size: 80px;
+      cursor: pointer;
+      transition: transform 0.3s;
+      color: #c084fc; /* Púrpura lavanda */
+    }
+
+    .nombre:hover {
+      transform: scale(1.1);
+      text-shadow: 0 0 15px #e0b3ff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="corazones">❤️❤️❤️❤️❤️</div>
+
+  <div class="nombre" onclick="mostrarMensaje()">Saris</div>
+
+  <div class="corazones">❤️❤️❤️❤️❤️</div>
+
+  <div id="mensaje">
+    Puede que hayan millones de rosas en todo el mundo,<br>
+    pero tú eres mi única y exclusiva rosa. 🌹
+  </div>
+
+  <script>
+    function mostrarMensaje() {
+      document.getElementById('mensaje').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
