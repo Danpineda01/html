@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Ti</title>
+    <style>
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', cursive;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .corazon {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 105, 180, 0.6);
+            animation: caer 5s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes caer {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .mensaje {
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 80%;
+            position: relative;
+            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+        }
+        
+        #mensaje1 {
+            color: #ff69b4;
+            font-size: 28px;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
+            opacity: 1;
+            transition: all 1s ease;
+        }
+        
+        #mensaje2 {
+            color: #ffb6c1;
+            font-size: 22px;
+            text-shadow: 0 0 5px rgba(255, 182, 193, 0.7);
+            opacity: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 1s ease;
+            width: 80%;
+            line-height: 1.6;
+        }
+        
+        .destello {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 10%, rgba(255, 182, 193, 0.1) 20%, transparent 30%);
+            animation: brillo 3s infinite alternate;
+            pointer-events: none;
+        }
+        
+        @keyframes brillo {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+    <div class="destello"></div>
+    
+    <div class="mensaje">
+        <div id="mensaje1">¿Por qué soy así contigo?</div>
+        <div id="mensaje2">Pues quiero que tengas todo lo que a mí me faltó, quiero que sientas que te quiero de verdad, te adoro mi pequeña saris. Que sientas que, a pesar de los malos momentos, yo estaré aquí para ti y te voy a querer. Que siempre tendré los brazos abiertos para ti, mi niña.</div>
+    </div>
+
+    <script>
+        // Crear corazones flotantes
+        function crearCorazones() {
+            const corazon = document.createElement('div');
+            corazon.innerHTML = '❤';
+            corazon.className = 'corazon';
+            corazon.style.left = Math.random() * 100 + 'vw';
+            corazon.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.body.appendChild(corazon);
+            
+            setTimeout(() => {
+                corazon.remove();
+            }, 5000);
+        }
+        
+        setInterval(crearCorazones, 300);
+        
+        // Transición entre mensajes
+        setTimeout(function() {
+            document.getElementById('mensaje1').style.opacity = '0';
+            setTimeout(function() {
+                document.getElementById('mensaje2').style.opacity = '1';
+            }, 1000);
+        }, 6000);
+    </script>
+</body>
+</html>
