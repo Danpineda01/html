@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Te Quiero, Saris 💖</title>
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse at center, #000000 0%, #1a1a1a 100%);
+      overflow: hidden;
+      font-family: 'Segoe UI', cursive, sans-serif;
+    }
+
+    .mensaje {
+      position: absolute;
+      width: 100%;
+      top: 40%;
+      text-align: center;
+      font-size: 2.5em;
+      color: white;
+      animation: fade 5s linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes fade {
+      0%, 100% { opacity: 0; transform: scale(0.95); }
+      10%, 90% { opacity: 1; transform: scale(1); }
+    }
+
+    .corazon {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: flotar 10s infinite linear;
+    }
+
+    .corazon::before,
+    .corazon::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .corazon::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .corazon::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes flotar {
+      0% {
+        transform: translateY(100vh) scale(1) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.5) rotate(90deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="mensaje" id="frase"></div>
+
+  <script>
+    const frases = [
+      { texto: "No sólo eres mi pareja, también eres mi...", color: "#FF69B4" },
+      { texto: "Eres mi calma", color: "#87CEFA" },
+      { texto: "Eres mi lugar favorito", color: "#FFD700" },
+      { texto: "Eres mi confidente", color: "#00FA9A" },
+      { texto: "Eres mi refugio", color: "#FF6347" },
+      { texto: "Eres mi inspiración", color: "#BA55D3" },
+      { texto: "Eres mi todo", color: "#00CED1" },
+      { texto: "Te quiero mi amor, mi pequeña Saris ❤️", color: "#FF1493" }
+    ];
+
+    const fraseEl = document.getElementById("frase");
+    let index = 0;
+
+    function mostrarFrase() {
+      fraseEl.textContent = frases[index].texto;
+      fraseEl.style.color = frases[index].color;
+      fraseEl.style.animation = "none";
+      void fraseEl.offsetWidth; // Reiniciar animación
+      fraseEl.style.animation = "fade 5s linear infinite";
+      index = (index + 1) % frases.length;
+    }
+
+    mostrarFrase();
+    setInterval(mostrarFrase, 5000);
+
+    // Corazones decorativos
+    for (let i = 0; i < 30; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'corazon';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.top = Math.random() * window.innerHeight + 'px';
+      heart.style.animationDuration = (6 + Math.random() * 5) + 's';
+      document.body.appendChild(heart);
+    }
+  </script>
+</body>
+</html>
