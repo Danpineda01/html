@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para Mi Saris 💖</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5em;
+      font-weight: bold;
+      text-align: center;
+      padding: 20px;
+      border-radius: 50%;
+      animation: fade 5s ease-in-out forwards;
+    }
+
+    @keyframes fade {
+      0% { opacity: 0; transform: scale(0.5); }
+      10% { opacity: 1; transform: scale(1); }
+      90% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.5); }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const mensajes = [
+      "Mi Saris, te extraño cada segundo 💔",
+      "Tu sonrisa ilumina mi alma 🌟",
+      "Sin ti, todo se siente vacío 😢",
+      "Te pienso más de lo que imaginas 💭",
+      "Mi corazón late por ti ❤️",
+      "Eres mi paz en el caos 🌈",
+      "Cada día sin ti es gris 🌫️",
+      "Te amo más que ayer y menos que mañana 💘",
+      "Tu ausencia me duele, mi amor 😞",
+      "Eres mi razón de ser 💞",
+      "Deseo verte pronto, mi vida te necesita 🥺",
+      "Tu voz es mi melodía favorita 🎶",
+      "Mi Saris, eres mi todo 🌍",
+      "No hay distancia que apague este amor 🚀",
+      "Te llevo en cada latido 💓"
+    ];
+
+    const colores = [
+      "#FF69B4", "#FF4500", "#FFD700", "#ADFF2F", "#00CED1",
+      "#9370DB", "#FF1493", "#00FA9A", "#FF6347", "#7B68EE",
+      "#FFB6C1", "#20B2AA", "#FF00FF", "#DC143C", "#40E0D0"
+    ];
+
+    let index = 0;
+
+    function mostrarCorazon() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.backgroundColor = colores[index];
+      heart.textContent = mensajes[index];
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+        index++;
+        if (index < mensajes.length) {
+          mostrarCorazon();
+        }
+      }, 5000);
+    }
+
+    mostrarCorazon();
+  </script>
+</body>
+</html>
