@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta del Corazón</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0c0c0c 0%, #2d2d2d 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: 'Playfair Display', serif;
+            color: #e0e0e0;
+        }
+        
+        .letter-container {
+            width: 100%;
+            max-width: 700px;
+            background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #333;
+        }
+        
+        .letter-header {
+            background: linear-gradient(to right, #ff6b6b, #ff8e8e);
+            padding: 25px;
+            text-align: center;
+            color: #1a1a1a;
+            position: relative;
+        }
+        
+        .letter-header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .letter-header p {
+            font-style: italic;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+        
+        .letter-content {
+            padding: 40px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            position: relative;
+        }
+        
+        .letter-content p {
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+        
+        .heart-decoration {
+            position: absolute;
+            color: rgba(255, 107, 107, 0.3);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .heart-decoration:hover {
+            color: rgba(255, 107, 107, 0.7);
+            transform: scale(1.2);
+        }
+        
+        .heart-1 { top: 10%; left: 5%; }
+        .heart-2 { top: 20%; right: 7%; }
+        .heart-3 { bottom: 30%; left: 8%; }
+        .heart-4 { bottom: 15%; right: 5%; }
+        
+        .final-question {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #2a0c0c 0%, #4a1a1a 100%);
+            border-radius: 8px;
+            border-left: 4px solid #ff6b6b;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #ff8e8e;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);
+        }
+        
+        .signature {
+            text-align: right;
+            margin-top: 40px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #ff6b6b;
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+        }
+        
+        .envelope-flap {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 20px solid #ff8e8e;
+        }
+        
+        .starry-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: transparent;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        
+        .glow-effect {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle at center, rgba(255, 107, 107, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        @media (max-width: 600px) {
+            .letter-content {
+                padding: 25px;
+            }
+            
+            .letter-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .final-question {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="starry-bg" id="starryBg"></div>
+    <div class="letter-container">
+        <div class="glow-effect"></div>
+        <div class="envelope-flap"></div>
+        
+        <div class="letter-header">
+            <h1>Para Ti</h1>
+            <p>Mis pensamientos más sinceros</p>
+        </div>
+        
+        <div class="letter-content">
+            <div class="heart-decoration heart-1">❤</div>
+            <div class="heart-decoration heart-2">❤</div>
+            <div class="heart-decoration heart-3">❤</div>
+            <div class="heart-decoration heart-4">❤</div>
+            
+            <p>Bueno... estos días que no hemos hablado me hicieron pensar en muchas cosas. Me he preguntado cómo estás, si has comido bien, si duermes tranquila o si todavía piensas en mí de vez en cuando. Espero de corazón que estés bien.</p>
+            
+            <p>Quizá digas: "¿no se cansa de hablarme?"... y la verdad es que no, porque ¿cómo podría cansarme de alguien a quien amo con todo mi corazón? Cometí errores, lo sé, al igual que tú... pero creo que hoy toqué fondo, y aun así sentí la necesidad de escribirte, solo para saber cómo estás.</p>
+            
+            <p>Sé que tal vez no me respondas, o quizás ya no quieras saber nada de mí, pero una vez leí que mientras más pasan los días, el amor se puede enfriar... y sinceramente, yo no quiero que eso nos pase. No quiero perderte.</p>
+            
+            <p>Quisiera que ambos podamos mejorar, sanar lo que rompimos y volver a intentarlo.</p>
+            
+            <p>Quiero que estés a mi lado en todo momento, sobrellevando las dificultades juntos, apoyándonos como antes, y seguir caminando de la mano, sin soltarnos.</p>
+            
+            <p>Tú una vez me dijiste que nunca me dejarías solo, y que tampoco querías que yo te dejara... y aunque sé que las promesas a veces se rompen, la mía sigue intacta, porque te prometí con todo mi corazón que estaríamos juntos hasta viejitos.</p>
+            
+            <p>Aún tenemos tanto por cumplir... todos esos planes, esos sueños, esos "algún día" que imaginamos juntos.</p>
+            
+            <p>Sinceramente, espero que podamos volver a ilusionarnos, a sonreír, y estar más unidos que nunca. Sé que soy terco, pero es que cuando se ama de verdad, uno no se rinde tan fácil.</p>
+            
+            <div class="final-question">
+                Y ahora solo me queda hacerte una pregunta... ¿Quisieras seguir luchando conmigo?
+            </div>
+            
+            <div class="signature">Con todo mi cariño</div>
+        </div>
+    </div>
+
+    <script>
+        // Crear estrellas en el fondo
+        const starryBg = document.getElementById('starryBg');
+        const starCount = 100;
+        
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            
+            // Tamaño aleatorio entre 1-3px
+            const size = Math.random() * 2 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            
+            // Posición aleatoria
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            
+            // Animación aleatoria
+            star.style.animationDelay = `${Math.random() * 5}s`;
+            star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            
+            starryBg.appendChild(star);
+        }
+        
+        // Efecto de brillo interactivo con el ratón
+        document.addEventListener('mousemove', (e) => {
+            const glow = document.querySelector('.glow-effect');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            glow.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(255, 107, 107, 0.15) 0%, transparent 70%)`;
+        });
+    </script>
+</body>
+</html>
