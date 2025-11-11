@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>¿Me perdonas mi Saris?</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      overflow: hidden;
+      transition: background 2s ease;
+    }
+
+    .osito-box {
+      margin-top: 40px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ositos {
+      font-size: 60px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .burbuja {
+      background-color: #222;
+      border-radius: 12px;
+      padding: 15px 20px;
+      display: inline-block;
+      max-width: 80%;
+      font-size: 18px;
+      margin-top: 10px;
+      color: #fff;
+      box-shadow: 0 0 10px #555;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 1;
+      position: relative;
+    }
+
+    #noBtn {
+      background-color: #f44336;
+      color: white;
+    }
+
+    #siBtn {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .corazon {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      transform: rotate(45deg);
+      animation: flotar 8s linear infinite;
+      opacity: 0.8;
+      z-index: 0;
+    }
+
+    .corazon::before,
+    .corazon::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+    }
+
+    .corazon::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .corazon::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes flotar {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    .estrellas {
+      background-color: #000 !important;
+      background-image: radial-gradient(#fff 1px, transparent 1px),
+                        radial-gradient(#fff 1px, transparent 1px);
+      background-size: 50px 50px;
+      background-position: 0 0, 25px 25px;
+    }
+
+    .final {
+      font-size: 28px;
+      animation: brillar 1.5s ease-in-out infinite alternate;
+      margin-top: 30px;
+      color: #fff;
+      text-shadow: 0 0 10px #ff99cc;
+      background-color: #000;
+      padding: 20px;
+      border-radius: 12px;
+      display: inline-block;
+    }
+
+    @keyframes brillar {
+      from {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      to {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio id="melodia" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7f1b5b6b2e.mp3?filename=romantic-piano-112194.mp3" preload="auto"></audio>
+
+  <div class="osito-box">
+    <div class="ositos" id="ositos">🧸 🧸</div>
+    <div class="burbuja" id="burbuja">¿Me perdonas mi Saris? Di que sí... Por favor</div>
+  </div>
+
+  <div id="finalMensaje"></div>
+
+  <button id="noBtn" onclick="rechazo()">No</button>
+  <button id="siBtn" onclick="perdonado()">Sí</button>
+
+  <script>
+    const mensajes = [
+      "No seas así 🥺",
+      "¿Acaso no quieres arreglar las cosas? 😭",
+      "Vamos, sabes que me extrañas",
+      "Quiero estar contigo",
+      "Ya no te daré más opción. ¿Me perdonas o lloro? 😭",
+      "Mi corazón se rompe un poquito más cada vez 💔",
+      "¿De verdad no quieres que lo intentemos otra vez?",
+      "Piensa en todo lo bonito que hemos vivido juntos 🌠",
+      "No me rendiré, porque tú vales cada intento",
+      "Aunque digas que no, yo seguiré aquí, esperando tu sí",
+      "Saris... mi amor por ti no se apaga, solo se transforma en esperanza ✨",
+      "¿Y si te digo que cada noche pienso en ti antes de dormir? 🌙",
+      "No quiero seguir sin tu sonrisa, sin tu voz, sin tu amor 💔",
+      "Te extraño más de lo que las palabras pueden decir 😢",
+      "Solo tú haces que mi mundo tenga sentido ✨",
+      "No me rindo porque tú eres mi razón de seguir intentando 💖",
+      "Si pudiera abrazarte ahora, lo haría sin soltar jamás 🤗"
+    ];
+
+    const colores = [
+      "#ff4d4d", "#ff66b2", "#66ccff", "#cc99ff", "#ffff66",
+      "#ff9966", "#66ff99", "#ffccff", "#99ffff", "#ffb366",
+      "#ffffff", "#ffd1dc", "#c1f0f6", "#f4c2c2", "#e6e6fa", "#ffe4b5", "#d0f0c0"
+    ];
+
+    const ositoEmojis = [
+      "🥺🧸 🧸", "😢🧸 🧸", "😭🧸 🧸", "💔🧸 🧸", "😔🧸 🧸",
+      "😞🧸 🧸", "🌠🧸 🧸", "🫂🧸 🧸", "😇🧸 🧸", "❤️🧸 🧸",
+      "💞🧸 🧸💞", "🌙🧸 🧸", "😢🧸🧸", "✨🧸🧸", "💖🧸🧸", "🤗🧸🧸", "💘🧸🧸"
+    ];
+
+    let rechazoCount = 0;
+
+    function rechazo() {
+      if (rechazoCount < mensajes.length - 1) {
+        document.getElementById("burbuja").textContent = mensajes[rechazoCount];
+        document.getElementById("ositos").textContent = ositoEmojis[rechazoCount];
+        crearCorazones(colores[rechazoCount]);
+        rechazoCount++;
+      } else {
+        document.getElementById("burbuja").textContent = mensajes[mensajes.length - 1];
+        document.getElementById("ositos").textContent = ositoEmojis[ositoEmojis.length - 1];
+        document.getElementById("noBtn").style.display = "none";
+        crearCorazones(colores[colores.length - 1]);
+      }
+    }
+
+    function perdonado() {
+      document.getElementById("burbuja").textContent = "";
+      document.getElementById("ositos").textContent = "💞🧸 🧸💞";
+      document.getElementById("siBtn").style.display = "none";
+      document.getElementById("noBtn").style.display = "none";
+      document.body.classList.add("estrellas");
+      document.getElementById("melodia").play();
+      document.getElementById("finalMensaje").innerHTML = `<div class="final">Gracias por perdonarme. Te amo ❤️<br>Espero tu respuesta…</div>`;
+      for (let i = 0; i < 50; i++) {
+        crearCorazones(colores[Math.floor(Math.random() * colores.length)]);
+      }
+    }
+
+    function crearCorazones(color) {
+      const corazon = document.createElement("div");
+      corazon.classList.add("corazon");
+      corazon.style.left = Math.random() * window.innerWidth + "px";
+      corazon.style.top = "100vh";
+      corazon.style.animationDuration = (6 + Math.random() * 4) + "s";
+      corazon.style.backgroundColor = color;
+      document.body.appendChild(corazon);
+    }
+
+    crearCorazones(colores[0]);
+  </script>
+  
